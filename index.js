@@ -12,6 +12,21 @@ class BinarySearchTree{
     this.root = null;
   }
 
+//INVERTING the tree
+  invert(){
+    function invertTree(node){
+      if(!node) return;
+      let left = node.left;
+      let right = node.right;
+      node.left = right;
+      node.right = left;
+      invertTree(node.left);
+      invertTree(node.right);
+    }
+    invertTree(this.root)
+    return this;
+  }
+
   //INSERT method
   insert(value){
     var newNode = new Node(value);
@@ -62,8 +77,17 @@ class BinarySearchTree{
 var myTree = new BinarySearchTree();
 myTree.insert(50);
 myTree.insert(60);
-myTree.insert(70);
+myTree.insert(55);
 myTree.insert(80);
 myTree.insert(40);
+myTree.insert(30);
+myTree.insert(45);
+console.log("LEFT: ",myTree.root.left)
+console.log("RIGHT", myTree.root.right)
+myTree.invert();
+console.log("LEFT: ",myTree.root.left)
+console.log("RIGHT", myTree.root.right)
 
-myTree.search(80);
+
+
+
